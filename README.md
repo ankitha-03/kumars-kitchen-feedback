@@ -1,22 +1,25 @@
-Smart Anonymous Feedback & Insight System
- Kumar's Kitchen, Bengaluru
+# Smart Anonymous Feedback & Insight System
+### Kumar's Kitchen, Bengaluru
 
 A QR-based anonymous restaurant feedback platform that bridges the communication gap between customers and the restaurant owner — without any confrontation.
 
+---
 
-Live Demo
-Customer App:
-Admin Dashboard:
+## Live Demo
+- **Customer App:**
+- **Admin Dashboard:**
 
+---
 
-The Problem
+## The Problem
 Customers feel socially uncomfortable complaining directly to the owner. When they do complain, it leads to arguments. The owner never gets honest feedback, so problems never get fixed.
 
-The Solution
+## The Solution
 Customers scan a QR code on their table, select a dish, give a star rating, and submit anonymous feedback. The owner sees real-time insights on a dashboard — no confrontation needed.
 
+---
 
- Features
+## Features
 - QR code per table — opens instantly in phone browser
 - 100% anonymous — no login, no personal data collected
 - Star rating (1–5) per dish
@@ -32,8 +35,9 @@ Customers scan a QR code on their table, select a dish, give a star rating, and 
 - Discount coupon shown after feedback submission
 - Chef/Owner profile page
 
+---
 
-Tech Stack
+## Tech Stack
 
 **Frontend:** React.js, Chart.js, i18next, QRCode.react, Web Speech API, Canvas Confetti
 
@@ -43,9 +47,5 @@ Tech Stack
 
 **Deployment:** Vercel (frontend), Render (backend), MongoDB Atlas (database)
 
-
-
-
-
-
+---
 Project built for Kumar's Kitchen, Bengaluru

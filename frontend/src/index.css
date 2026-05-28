@@ -1,0 +1,413 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f8f9fa;
+  color: #222;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.2s, transform 0.1s;
+}
+button:active { transform: scale(0.97); }
+
+h2 { font-size: 1.4rem; font-weight: 700; }
+h3 { font-size: 1.1rem; font-weight: 600; }
+
+/* ── Page fade-in animation ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-fade {
+  animation: fadeInUp 0.3s ease both;
+}
+
+/* ── Skeleton shimmer ── */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+/* ── Responsive page containers ── */
+.page-container {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Customer pages: centered narrow on wide screens */
+.page-container-narrow {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .page-container-narrow {
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-container-narrow {
+    max-width: 680px;
+  }
+}
+
+/* ── Dish grid ── */
+.dish-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .dish-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dish-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 1.25rem;
+  }
+}
+
+/* ── Admin stat cards ── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+@media (min-width: 768px) {
+  .stat-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ── Admin charts row ── */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 480px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Best/worst row ── */
+.best-worst-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+@media (max-width: 480px) {
+  .best-worst-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Admin header action buttons ── */
+.admin-header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+/* On small phones: show icons only for Export and Logout, hide text */
+@media (max-width: 540px) {
+  .admin-btn-label { display: none; }
+  .admin-header-actions { gap: 6px; }
+}
+
+/* ── Admin content wrapper ── */
+.admin-content {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Admin tab bar ── */
+.tab-bar {
+  display: flex;
+  background: #fff;
+  border-bottom: 1.5px solid #f0f0f0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.tab-bar::-webkit-scrollbar { display: none; }
+
+/* ── Print styles ── */
+.print-only { display: none; }
+
+@media print {
+  .no-print { display: none !important; }
+
+  .print-only {
+    display: block;
+    padding: 20px;
+  }
+
+  .print-qr-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .print-qr-header h1 {
+    color: #e74c3c;
+    font-size: 28px;
+    margin-bottom: 4px;
+  }
+
+  .print-qr-header p {
+    color: #888;
+    font-size: 13px;
+  }
+
+  .print-qr-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .print-qr-card {
+    text-align: center;
+    border: 2px solid #e74c3c;
+    border-radius: 10px;
+    padding: 20px 16px;
+    break-inside: avoid;
+  }
+
+  .print-qr-card .qr-table-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: #222;
+    margin-top: 12px;
+    text-transform: capitalize;
+  }
+
+  .print-qr-card .qr-restaurant {
+    color: #e74c3c;
+    font-weight: 700;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  .print-qr-card .qr-url {
+    font-size: 9px;
+    color: #bbb;
+    margin-top: 4px;
+    word-break: break-all;
+  }
+}
+
+/* ── Mobile safe-area padding (iPhone notch) ── */
+@supports (padding: max(0px)) {
+  .page-container-narrow,
+  .page-container {
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}
+
+/* ════════════════════════════════════════
+   INTERACTIVE ANIMATION CLASSES
+════════════════════════════════════════ */
+
+/* Logo glow pulse */
+@keyframes logoPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(231,76,60,0.25); }
+  50%       { box-shadow: 0 4px 36px rgba(231,76,60,0.55), 0 0 0 6px rgba(231,76,60,0.08); }
+}
+.logo-pulse {
+  animation: logoPulse 2.8s ease-in-out infinite;
+}
+
+/* Button shimmer overlay on hover */
+@keyframes btnShimmer {
+  0%   { transform: translateX(-120%) skewX(-15deg); }
+  100% { transform: translateX(280%) skewX(-15deg); }
+}
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+  transform: translateX(-120%) skewX(-15deg);
+  pointer-events: none;
+}
+.btn-shimmer:hover::after {
+  animation: btnShimmer 0.65s ease forwards;
+}
+
+/* Category pill stagger */
+.pill-stagger {
+  animation: fadeInUp 0.35s ease both;
+  animation-delay: calc(var(--i, 0) * 0.07s);
+}
+
+/* Dish card stagger */
+.dish-card-anim {
+  animation: fadeInUp 0.35s ease both;
+  animation-delay: calc(var(--i, 0) * 0.055s);
+}
+
+/* Tab button press effect */
+.tab-btn {
+  transition: background 0.18s, color 0.18s, transform 0.1s;
+}
+.tab-btn:active { transform: scale(0.95); }
+
+/* Star pop animation */
+@keyframes starPop {
+  0%   { transform: scale(1.18); }
+  35%  { transform: scale(1.5); }
+  65%  { transform: scale(1.05); }
+  100% { transform: scale(1.18); }
+}
+.star-pop {
+  animation: starPop 0.28s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Submit button shake (validation error) */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  18%       { transform: translateX(-7px); }
+  36%       { transform: translateX(7px); }
+  54%       { transform: translateX(-5px); }
+  72%       { transform: translateX(5px); }
+  90%       { transform: translateX(-2px); }
+}
+.shake {
+  animation: shake 0.42s ease;
+}
+
+/* Loading spinner (inline, white) */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spinner {
+  display: inline-block;
+  width: 15px; height: 15px;
+  border: 2.5px solid rgba(255,255,255,0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+  vertical-align: middle;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+/* Bounce-in (🎉 success emoji) */
+@keyframes bounceIn {
+  0%   { transform: scale(0.3); opacity: 0; }
+  55%  { transform: scale(1.25); opacity: 1; }
+  75%  { transform: scale(0.88); }
+  90%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+.bounce-in {
+  animation: bounceIn 0.65s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Coupon shine sweep */
+@keyframes couponShine {
+  0%   { background-position: -300px center; }
+  100% { background-position: 400px center; }
+}
+.coupon-shine {
+  background: linear-gradient(
+    105deg,
+    #fff5f5 0%, #fff5f5 38%,
+    #ffe0dc 44%, #fff5f5 50%,
+    #fff5f5 100%
+  );
+  background-size: 500px 100%;
+  animation: couponShine 2.2s ease-in-out infinite;
+}
+
+/* Alert banner slide down */
+@keyframes slideDown {
+  from { transform: translateY(-110%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+.slide-down {
+  animation: slideDown 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Stagger for admin feedback cards */
+.feedback-card-anim {
+  animation: fadeInUp 0.3s ease both;
+  animation-delay: calc(var(--i, 0) * 0.04s);
+}
+
+/* Chef page hero photo ring pulse */
+@keyframes ringPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.25), 0 8px 32px rgba(0,0,0,0.25); }
+  50%       { box-shadow: 0 0 0 10px rgba(255,255,255,0.08), 0 8px 32px rgba(0,0,0,0.25); }
+}
+.chef-photo-ring {
+  animation: ringPulse 3s ease-in-out infinite;
+}
+
+/* Chef speciality card hover */
+.spec-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.spec-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+}
+
+/* Chef story bullet fade-in */
+.story-item {
+  animation: fadeInUp 0.4s ease both;
+  animation-delay: calc(var(--i, 0) * 0.1s);
+}
+
+/* General hover lift for clickable cards */
+.hover-lift {
+  transition: transform 0.18s, box-shadow 0.18s;
+  cursor: pointer;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12) !important;
+}
+
+/* ── Prefers-reduced-motion: kill all animations ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+  }
+}

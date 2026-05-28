@@ -44,20 +44,7 @@ Tech Stack
 **Deployment:** Vercel (frontend), Render (backend), MongoDB Atlas (database)
 
 
-Project Structure
-kumars-kitchen-feedback/
-├── backend/
-│   ├── models/        # MongoDB schemas
-│   ├── routes/        # API routes
-│   ├── utils/         # Mailer, Firebase, alerts
-│   └── server.js      # Express server
-├── frontend/
-│   ├── public/        # Static files
-│   └── src/
-│       ├── pages/     # All React pages
-│       ├── components/# Reusable components
-│       └── utils/     # Helper functions
-└── README.md
+
 
 
 
